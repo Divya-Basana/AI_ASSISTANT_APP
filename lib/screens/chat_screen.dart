@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../providers/chat_provider.dart';
 import '../widgets/typing_indicator.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -12,7 +13,71 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController controller = TextEditingController();
   final ScrollController scrollController = ScrollController();
+  late stt.SpeechToText _speech;
+  bool _isListening = false;
+  
+  @override
+  void initState() {
+    super.initState();
+    _speech = stt.SpeechToText();
+  }
+  
+void _listen() async {
+  if (!_isListening) {
+    bool available = await _speech.initialize(
+      onStatus: (status) {
+        if (status == "done") {
+          setState(() => _isListening = false);
+        }
+      },
+      onError: (error) {
+        setState(() => _isListening = false);
+      },
+    );
 
+    if (available) {
+      setState(() => _isListening = true);
+
+      /// 🌐 👉 ADD YOUR CODE HERE
+      List<String> supportedLocales = [
+        "en_US",
+        "hi_IN",
+        "te_IN",
+      ];
+
+      String localeId = "en_US";
+
+      try {
+        var systemLocale = await _speech.systemLocale();
+        localeId = systemLocale?.localeId ?? "en_US";
+
+        if (!supportedLocales.contains(localeId)) {
+          localeId = "en_US"; // fallback
+        }
+      } catch (e) {
+        localeId = "en_US";
+      }
+
+      /// 🎤 START LISTENING
+      _speech.listen(
+        localeId: localeId, // 🔥 USE HERE
+        listenMode: stt.ListenMode.dictation,
+        partialResults: true,
+        listenFor: const Duration(seconds: 60),
+        pauseFor: const Duration(seconds: 10),
+
+        onResult: (result) {
+          setState(() {
+            controller.text = result.recognizedWords;
+          });
+        },
+      );
+    }
+  } else {
+    setState(() => _isListening = false);
+    _speech.stop();
+  }
+}
   /// 🔥 INLINE EDIT STATE
   int? editingIndex;
   TextEditingController editController = TextEditingController();
@@ -279,56 +344,81 @@ class _ChatScreenState extends State<ChatScreen> {
                   color: Color(0xFF020617),
                 ),
                 child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 14),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF1E293B),
-                          borderRadius:
-                              BorderRadius.circular(25),
-                          border: Border.all(
-                              color: Colors.white10),
-                        ),
-                        child: TextField(
-                          controller: controller,
-                          style: const TextStyle(
-                              color: Colors.white),
-                          maxLines: null,
-                          textInputAction:
-                              TextInputAction.send,
-                          onSubmitted: (value) =>
-                              sendMessage(chatProvider, value),
-                          decoration: const InputDecoration(
-                            hintText: "Send a message...",
-                            hintStyle:
-                                TextStyle(color: Colors.white38),
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFF2563EB),
-                            Color(0xFF22D3EE),
-                          ],
-                        ),
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.send,
-                            color: Colors.white),
-                        onPressed: () => sendMessage(
-                            chatProvider, controller.text),
-                      ),
-                    ),
-                  ],
-                ),
+  children: [
+    /// 🎤 MIC BUTTON
+  Container(
+  decoration: BoxDecoration(
+    color: _isListening
+        ? Colors.redAccent
+        : const Color(0xFF1E293B),
+    shape: BoxShape.circle,
+    boxShadow: _isListening
+        ? [
+            BoxShadow(
+              color: Colors.red.withOpacity(0.6),
+              blurRadius: 12,
+              spreadRadius: 2,
+            )
+          ]
+        : [],
+  ),
+  child: IconButton(
+    icon: Icon(
+      _isListening ? Icons.mic : Icons.mic_none,
+      color: Colors.white,
+    ),
+    onPressed: _listen,
+  ),
+),
+
+    const SizedBox(width: 8),
+
+    /// 💬 TEXT FIELD
+    Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1E293B),
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all(color: Colors.white10),
+        ),
+        child: TextField(
+          controller: controller,
+          style: const TextStyle(color: Colors.white),
+          maxLines: null,
+          textInputAction: TextInputAction.send,
+          onSubmitted: (value) =>
+              sendMessage(chatProvider, value),
+          decoration: const InputDecoration(
+            hintText: "Speak or type...",
+            hintStyle: TextStyle(color: Colors.white38),
+            border: InputBorder.none,
+          ),
+        ),
+      ),
+    ),
+
+    const SizedBox(width: 8),
+
+    /// 🚀 SEND BUTTON
+    Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF2563EB),
+            Color(0xFF22D3EE),
+          ],
+        ),
+        shape: BoxShape.circle,
+      ),
+      child: IconButton(
+        icon: const Icon(Icons.send, color: Colors.white),
+        onPressed: () =>
+            sendMessage(chatProvider, controller.text),
+      ),
+    ),
+  ],
+),
               ),
             ],
           ),

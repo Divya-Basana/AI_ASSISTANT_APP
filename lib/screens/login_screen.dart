@@ -55,7 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
       }
 
       print("✅ Email login success");
-
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message ?? "Error")));
@@ -90,7 +89,6 @@ class _LoginScreenState extends State<LoginScreen> {
       await FirebaseAuth.instance.signInWithCredential(credential);
 
       print("✅ Google Sign-In Success");
-
     } catch (e) {
       print("❌ Google Sign-In Error: $e");
 
@@ -222,9 +220,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   const SizedBox(height: 10),
 
-                  /// 🔵 LOGIN / SIGNUP BUTTON
+                  /// 🔵 LOGIN / SIGNUP BUTTON (FIXED)
                   SizedBox(
                     width: double.infinity,
+                    height: 50, // ✅ FIXED HEIGHT
                     child: ElevatedButton(
                       onPressed: isLoading
                           ? null
@@ -232,11 +231,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               await authenticate();
                             },
                       style: ElevatedButton.styleFrom(
-                        padding:
-                            const EdgeInsets.symmetric(vertical: 14),
+                        padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,
@@ -252,12 +249,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius:
                               BorderRadius.all(Radius.circular(12)),
                         ),
-                        child: Container(
-                          alignment: Alignment.center,
+                        child: Center(
                           child: Text(
                             isLogin ? "Sign In" : "Sign Up",
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 16,
                             ),
                           ),
                         ),

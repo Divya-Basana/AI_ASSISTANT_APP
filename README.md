@@ -1,12 +1,12 @@
 # 🤖 AI Assistant Mobile App (Flutter)
 
-An intelligent AI-powered mobile assistant application built using **Flutter**, designed to provide real-time conversational support through API integration. The app enables users to interact with an AI system via a clean chat interface while ensuring secure access using Firebase Authentication.
+An intelligent AI-powered mobile assistant application built using **Flutter**, designed to provide real-time conversational support through both **text and voice input**. The app integrates external AI APIs to generate meaningful responses and uses Firebase for secure user authentication.
 
 ---
 
 ## 📱 Overview
 
-This application acts as a **personal AI assistant**, allowing users to ask questions, get instant responses, and interact naturally using a chat-based interface. It combines modern mobile development with AI services to deliver a smooth and responsive user experience.
+This application acts as a **smart personal assistant**, allowing users to interact using either typing or speaking. The app converts voice input into text, processes it using an AI API, and delivers intelligent responses through a chat-based interface.
 
 ---
 
@@ -15,8 +15,11 @@ This application acts as a **personal AI assistant**, allowing users to ask ques
 * 💬 **Real-Time Chat Interface**
   Interactive chat UI with user and AI message bubbles
 
+* 🎤 **Voice Input (Mic Feature)**
+  Speak instead of typing using speech-to-text
+
 * 🤖 **AI Integration (API-Based)**
-  Sends user queries to an external AI API and displays intelligent responses
+  Generates intelligent responses using external AI API
 
 * 🔐 **Firebase Authentication**
   Secure login and registration system
@@ -31,29 +34,37 @@ This application acts as a **personal AI assistant**, allowing users to ask ques
 
 ## 🛠️ Technologies Used
 
-* **Flutter** – UI framework for cross-platform development
+* **Flutter** – Cross-platform UI development
 * **Dart** – Programming language
 * **Provider** – State management
 * **REST API** – AI communication
 * **HTTP Package** – API requests
 * **Firebase Authentication** – User management
+* **Speech-to-Text** – Voice input processing
 
 ---
 
 ## 🏗️ System Architecture
 
-The application follows a **layered architecture**:
+The app follows a **layered architecture**:
 
-* 📱 **Presentation Layer** → Screens & Widgets
-* 🧠 **State Management Layer** → Provider
-* 🔌 **Service Layer** → API Service
-* 📦 **Data Layer** → Models
+* 📱 Presentation Layer → UI Screens & Widgets
+* 🎤 Speech-to-Text Layer → Voice Processing
+* 🧠 State Management → Provider
+* 🔌 Service Layer → API Integration
+* 📦 Data Layer → Models
 
 ---
 
 ## 🔄 API Flow
 
-User Input → Chat Provider → API Service → AI API → Response → UI Update
+User Input (Text / Voice)
+→ Speech-to-Text (if voice)
+→ Chat Provider
+→ API Service
+→ AI API
+→ Response
+→ UI Update
 
 ---
 
@@ -63,7 +74,7 @@ User Input → Chat Provider → API Service → AI API → Response → UI Upda
 lib/
  ├── screens/        # UI screens (Login, Chat, Home)
  ├── widgets/        # Reusable UI components
- ├── providers/      # State management (Provider)
+ ├── providers/      # State management
  ├── services/       # API integration
  ├── models/         # Data models
 ```
@@ -89,13 +100,13 @@ flutter pub get
 
 * Create a Firebase project
 * Download `google-services.json`
-* Place it inside:
+* Place it in:
 
-  ```
-  android/app/
-  ```
+```
+android/app/
+```
 
-### 4️⃣ Run the Application
+### 4️⃣ Run the App
 
 ```bash
 flutter run
@@ -103,32 +114,27 @@ flutter run
 
 ---
 
-## 📸 Screenshots (Add your images here)
+## 📸 Screenshots
 
-* Login Screen
-* Register Screen
-* Chat Interface
-* Home Screen
+(Add your app screenshots here for better presentation)
 
 ---
 
 ## 🎯 Use Case
 
-This app is designed to:
-
-* Provide instant AI-based assistance
-* Improve user productivity
-* Demonstrate integration of AI in mobile apps
+* Smart assistant for answering queries
+* Hands-free interaction using voice
+* Demonstration of AI + Flutter integration
 
 ---
 
 ## 🔮 Future Enhancements
 
-* 🎤 Voice Input Integration
-* 🌐 Multi-language Support
-* 💾 Chat History Storage
-* 🧠 Personalized AI Responses
-* 🌙 Dark/Light Mode Toggle
+* 🔊 Text-to-Speech (AI voice replies)
+* 🌐 Multi-language support
+* 💾 Chat history storage
+* 🧠 Personalized responses
+* 🌙 Dark mode
 
 ---
 
@@ -141,12 +147,12 @@ B.Tech - Computer Science & Information Technology
 
 ## ⭐ Acknowledgements
 
-* Flutter SDK by Google
-* Firebase Services
-* AI API Provider
+* Flutter by Google
+* Firebase
+* AI API services
 
 ---
 
 ## 📌 License
 
-This project is developed for educational and academic purposes.
+This project is developed for academic and learning purposes.

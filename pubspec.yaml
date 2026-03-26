@@ -13,17 +13,21 @@ dependencies:
 
   provider: ^6.0.5
 
-  firebase_core: ^2.25.4
-  firebase_auth: ^4.17.4
-  cloud_firestore: ^4.15.8
+  # 🔥 UPDATED (ONLY THESE CHANGED)
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.1.0
+  cloud_firestore: ^5.4.0
 
   google_sign_in: ^6.1.6
 
   shared_preferences: ^2.2.2
   http: ^1.6.0
   flutter_svg: ^2.0.9
+  avatar_glow: ^3.0.1
 
-  
+  # 🔥 KEEP (NOW COMPATIBLE)
+  speech_to_text: ^7.3.0
+  flutter_tts: ^3.8.5
 
   cupertino_icons: ^1.0.8
 
@@ -33,20 +37,17 @@ dev_dependencies:
 
   flutter_lints: ^6.0.0
 
-  # 🔥 APP ICON PACKAGE
   flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
 
-  # 🔥 LOGO ASSET
   assets:
     - assets/images/logo.png
 
-# 🔥 APP ICON CONFIG (OUTSIDE flutter)
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/logo.png"
+  
   adaptive_icon_background: "#0F172A"
   adaptive_icon_foreground: "assets/images/logo.png"
