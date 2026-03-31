@@ -116,7 +116,13 @@ flutter run
 
 ## 📸 Screenshots
 
-![Splash Screen](<splash screen.jpeg>) ![Create Account](<create acc.jpeg>) ![Sign-In Screen](sign-in.jpeg) ![Rest Password](<reset password.jpeg>) ![New Chat Screen](home.jpeg) ![Chat Screen](<chat screen.jpeg>) ![Voice input](<voice input.jpeg>) ![Edit Prompt](<edit prompt.jpeg>) ![Chat History](<chat hist.jpeg>) ![Rename & Edit Chat](rename_delete.jpeg) ![Mail Reset Link](mail_link.png) ![Reset Pass](<reset pass.png>) ![Pass Changed](<password changed.png>) ![Firebase Console](<firebase console.png>) ![Overview](overview.png) ![Firestore](firestore.png) ![Authentication](authen.png)
+| | | | |
+|---|---|---|---|
+| ![](splash%20screen.jpeg) | ![](create%20acc.jpeg) | ![](sign-in.jpeg) | ![](reset%20password.jpeg) |
+| ![](home.jpeg) | ![](chat%20screen.jpeg) | ![](voice%20input.jpeg) | ![](edit%20prompt.jpeg) |
+| ![](chat%20hist.jpeg) | ![](rename_delete.jpeg) | ![](mail_link.png) | ![](reset%20pass.png) |
+| ![](password%20changed.png) | ![](firebase%20console.png) | ![](overview.png) | ![](firestore.png) |
+| ![](authen.png) |  |  |  |
 ---
 
 ## 🎯 Use Case
