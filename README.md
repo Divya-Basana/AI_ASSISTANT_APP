@@ -53,19 +53,19 @@ The app follows a **layered architecture**:
 * 🧠 State Management → Provider
 * 🔌 Service Layer → API Integration
 * 📦 Data Layer → Models
-
+![System Architecture](<system architecture.png>)
 ---
 
 ## 🔄 API Flow
 
 User Input (Text / Voice)
-→ Speech-to-Text (if voice)
+→ Speech-to-Text
 → Chat Provider
 → API Service
 → AI API
 → Response
 → UI Update
-
+![API Flow](<API flow.png>)
 ---
 
 ## 📂 Project Structure
@@ -86,7 +86,7 @@ lib/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ai-assistant-app.git
+git clone https://github.com/Divya-Basana/ai-assistant-app.git
 cd ai-assistant-app
 ```
 
@@ -116,8 +116,7 @@ flutter run
 
 ## 📸 Screenshots
 
-(Add your app screenshots here for better presentation)
-
+![Splash Screen](<splash screen.jpeg>) ![Create Account](<create acc.jpeg>) ![Sign-In Screen](sign-in.jpeg) ![Rest Password](<reset password.jpeg>) ![New Chat Screen](home.jpeg) ![Chat Screen](<chat screen.jpeg>) ![Voice input](<voice input.jpeg>) ![Edit Prompt](<edit prompt.jpeg>) ![Chat History](<chat hist.jpeg>) ![Rename & Edit Chat](rename_delete.jpeg) ![Mail Reset Link](mail_link.png) ![Reset Pass](<reset pass.png>) ![Pass Changed](<password changed.png>) ![Firebase Console](<firebase console.png>) ![Overview](overview.png) ![Firestore](firestore.png) ![Authentication](authen.png)
 ---
 
 ## 🎯 Use Case
@@ -132,7 +131,6 @@ flutter run
 
 * 🔊 Text-to-Speech (AI voice replies)
 * 🌐 Multi-language support
-* 💾 Chat history storage
 * 🧠 Personalized responses
 * 🌙 Dark mode
 
